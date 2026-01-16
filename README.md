@@ -1,0 +1,125 @@
+[mr_dorian_poll_page.html](https://github.com/user-attachments/files/24670268/mr_dorian_poll_page.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr. Dorian Poll</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      font-size: 24px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .yes-btn {
+      background-color: #ff6b6b;
+      color: white;
+    }
+
+    .no-btn {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .results {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Is Mr. Dorian boring?</h1>
+
+    <div class="buttons">
+      <button class="yes-btn" onclick="vote('yes')">Yes</button>
+      <button class="no-btn" onclick="vote('no')">No</button>
+    </div>
+
+    <div class="results">
+      <p>Yes votes: <span id="yesCount">0</span></p>
+      <p>No votes: <span id="noCount">0</span></p>
+    </div>
+
+    <div class="note">
+      For entertainment purposes only. Approved by Mr. Dorian.
+    </div>
+  </div>
+
+  <script>
+    // Load saved votes from localStorage
+    let yesVotes = localStorage.getItem('yesVotes')
+      ? parseInt(localStorage.getItem('yesVotes'))
+      : 0;
+
+    let noVotes = localStorage.getItem('noVotes')
+      ? parseInt(localStorage.getItem('noVotes'))
+      : 0;
+
+    // Display initial values
+    document.getElementById('yesCount').textContent = yesVotes;
+    document.getElementById('noCount').textContent = noVotes;
+
+    function vote(choice) {
+      if (choice === 'yes') {
+        yesVotes++;
+        localStorage.setItem('yesVotes', yesVotes);
+      } else if (choice === 'no') {
+        noVotes++;
+        localStorage.setItem('noVotes', noVotes);
+      }
+
+      // Update display
+      document.getElementById('yesCount').textContent = yesVotes;
+      document.getElementById('noCount').textContent = noVotes;
+    }
+  </script>
+</body>
+</html>
